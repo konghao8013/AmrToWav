@@ -1,0 +1,5 @@
+K:\code\konghao\AmrAudioLibrary\AmrAudioLibrary\bin\Debug\AmrAudioLibrary.dll
+K:\code\konghao\AmrAudioLibrary\AmrAudioLibrary\bin\Debug\AmrAudioLibrary.pdb
+K:\code\konghao\AmrAudioLibrary\AmrAudioLibrary\obj\Debug\AmrAudioLibrary.dll
+K:\code\konghao\AmrAudioLibrary\AmrAudioLibrary\obj\Debug\AmrAudioLibrary.pdb
+K:\code\konghao\AmrAudioLibrary\AmrAudioLibrary\obj\Debug\AmrAudioLibrary.csprojResolveAssemblyReference.cache

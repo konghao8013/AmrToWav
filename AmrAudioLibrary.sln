@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmrAudioLibrary", "AmrAudioLibrary\AmrAudioLibrary.csproj", "{9D243B0B-5951-4AF9-8249-E49545F31B7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmrAudioLibraryTest", "AmrAudioLibraryTest\AmrAudioLibraryTest.csproj", "{8E3EE3D6-6FDF-4761-B0DD-606C30B5C4AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9D243B0B-5951-4AF9-8249-E49545F31B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D243B0B-5951-4AF9-8249-E49545F31B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D243B0B-5951-4AF9-8249-E49545F31B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D243B0B-5951-4AF9-8249-E49545F31B7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E3EE3D6-6FDF-4761-B0DD-606C30B5C4AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E3EE3D6-6FDF-4761-B0DD-606C30B5C4AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E3EE3D6-6FDF-4761-B0DD-606C30B5C4AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E3EE3D6-6FDF-4761-B0DD-606C30B5C4AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

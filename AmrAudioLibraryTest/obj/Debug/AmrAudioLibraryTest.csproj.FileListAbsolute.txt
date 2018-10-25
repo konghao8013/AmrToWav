@@ -1,0 +1,8 @@
+K:\code\konghao\AmrAudioLibrary\AmrAudioLibraryTest\bin\Debug\AmrAudioLibraryTest.exe.config
+K:\code\konghao\AmrAudioLibrary\AmrAudioLibraryTest\bin\Debug\AmrAudioLibraryTest.exe
+K:\code\konghao\AmrAudioLibrary\AmrAudioLibraryTest\bin\Debug\AmrAudioLibraryTest.pdb
+K:\code\konghao\AmrAudioLibrary\AmrAudioLibraryTest\bin\Debug\AmrAudioLibrary.dll
+K:\code\konghao\AmrAudioLibrary\AmrAudioLibraryTest\bin\Debug\AmrAudioLibrary.pdb
+K:\code\konghao\AmrAudioLibrary\AmrAudioLibraryTest\obj\Debug\AmrAudioLibraryTest.csprojResolveAssemblyReference.cache
+K:\code\konghao\AmrAudioLibrary\AmrAudioLibraryTest\obj\Debug\AmrAudioLibraryTest.exe
+K:\code\konghao\AmrAudioLibrary\AmrAudioLibraryTest\obj\Debug\AmrAudioLibraryTest.pdb
