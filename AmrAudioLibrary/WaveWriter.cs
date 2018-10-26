@@ -1,16 +1,17 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AmrAudioLibrary
 {
     public class WaveWriter
     {
 
-        private FileInfo wavFile;
-        private BinaryWriter binaryWriter;
 
-        private string filePath;
+        private BinaryWriter binaryWriter;
+        private MemoryStream ms;
+
         private int sampleRate;
         private int channels;
         private int bitsPerSample;
@@ -26,45 +27,21 @@ namespace AmrAudioLibrary
          * @param channels  number of channels
          * @param sampleBits  number of bits per sample (S8LE, S16LE)
          */
-        public WaveWriter(String path, int sampleRate,
+        public WaveWriter(int sampleRate,
                           int bitsPerSample, int channels)
         {
-
-            this.filePath = path;
             this.sampleRate = sampleRate;
             this.channels = channels;
             this.bitsPerSample = bitsPerSample;
             this.dataLength = 0;
+
+            UTF8Encoding utf8 = new UTF8Encoding(false);
+            binaryWriter = new BinaryWriter(ms = new MemoryStream(), utf8);
+            binaryWriter.Seek(0, SeekOrigin.Begin);
+            this.WriteHeader();
         }
 
-        /**
-         * Create output WAV file
-         *
-         * @return whether file creation succeeded
-         *
-         * @throws IOException if file I/O error occurs allocating header
-         */
-        public bool CreateFile()
-        {
-            try
-            {
-                wavFile = new FileInfo(filePath);
-                if (wavFile.Exists)
-                {
-                    wavFile.Delete();
-                }
-                UTF8Encoding utf8 = new UTF8Encoding(false);
-                binaryWriter = new BinaryWriter(wavFile.Create(), utf8);
-                binaryWriter.Seek(0, SeekOrigin.Begin);
-                this.WriteHeader();
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
 
-            return true;
-        }
 
         /**
          * Write audio data to output file (mono). Does
@@ -96,18 +73,29 @@ namespace AmrAudioLibrary
          *
          * @throws IOException if file I/O error occurs writing WAV header
          */
-        public void CloseFile()
+        public byte[] Close()
         {
             if (this.binaryWriter == null)
             {
-                return;
+                return new byte[0];
             }
 
             this.binaryWriter.Seek(0, SeekOrigin.Begin);
             WriteHeader();
+
+            this.binaryWriter.Seek(0, SeekOrigin.Begin);
+            var bytes = new byte[this.binaryWriter.BaseStream.Length];
+
+            ms.Read(bytes, 0, bytes.Length);
+
             this.binaryWriter.Close();
 
+
+
+            return bytes;
         }
+
+
 
         private void WriteHeader()
         {
@@ -141,6 +129,7 @@ namespace AmrAudioLibrary
             binaryWriter.Write(this.dataLength); // data subchunk size
 
             binaryWriter.Flush();
+
 
         }
 

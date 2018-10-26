@@ -10,15 +10,11 @@ namespace AmrAudioLibrary
 {
     public class Amr2Wav
     {
-        public void Converter(string amrPath, string wavPath)
+        public byte[] Converter(byte[] bytes)
         {
-            FileInfo inFileInfo = new FileInfo(amrPath);
-            if (!inFileInfo.Exists)
-            {
-                throw new FileNotFoundException(amrPath);
-            }
 
-            BinaryReader binaryReader = new BinaryReader(inFileInfo.Open(FileMode.Open));
+            var ms = new MemoryStream(bytes);
+            BinaryReader binaryReader = new BinaryReader(ms);
             if (binaryReader.BaseStream.Length < 10)
             {
                 throw new Exception("损坏的音频文件");
@@ -50,13 +46,9 @@ namespace AmrAudioLibrary
                     throw new Exception("错误的头文件");
                 }
             }
-            WaveWriter wav = new WaveWriter(wavPath, amr.rate, 16, 1);
-            bool flag = wav.CreateFile();
-            if (!flag)
-            {
-                binaryReader.Close();
-                throw new Exception("未能创建WAV文件：" + wavPath);
-            }
+            WaveWriter wav = new WaveWriter(amr.rate, 16, 1);
+
+
             amr.Init();
             while (binaryReader.BaseStream.Position < binaryReader.BaseStream.Length)
             {
@@ -92,9 +84,34 @@ namespace AmrAudioLibrary
             binaryReader.Close();
             binaryReader.Dispose();
 
-            amr.Exit();
-            wav.CloseFile();
 
+            amr.Exit();
+
+            var bs = wav.Close();
+           
+
+            return bs;
+        }
+        public  void Converter(string amrPath, string wavPath)
+        {
+            FileInfo inFileInfo = new FileInfo(amrPath);
+            if (!inFileInfo.Exists)
+            {
+                throw new FileNotFoundException(amrPath);
+            }
+
+            var fs = new FileStream(amrPath, FileMode.Open, FileAccess.Read);
+            var bytes = new byte[fs.Length];
+            fs.Read(bytes, 0, bytes.Length);
+            fs.Close();
+            fs.Dispose();
+
+            var bs = Converter(bytes);
+
+            var fw = new FileStream(wavPath, FileMode.Create, FileAccess.Write);
+            fw.Write(bs, 0, bs.Length);
+            fw.Close();
+            fw.Dispose();
         }
     }
 }
